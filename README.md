@@ -29,7 +29,7 @@ Make sure all dependencies listed above are installed and available on your PC.
 
 To use the UR10 robot, create a file called ur10.yaml locally (at any desired location), containing:
 ```yaml
-path: "<Path to iam_description>/iam_description"
+path: "<PATH TO CATKIN SRC>/iam_description"
 name: ur10_with_sr_gripper
 urdf_path: "urdfs/ur10_with_sr_gripper.urdf" 
 fixed: true
@@ -121,7 +121,7 @@ sudo make install
 ## Running the FSM controller
 The controller in this repository can be run in mc_rtc as standalone using mc-rtc-ticker. In order to do so, edit the robot and controller in the mc_rtc configuration (.config/mc_rtc/mc_rtc.yaml) to:
 ```yaml
-MainRobot: [json_iam,"<Path to ur10.yaml>/ur10.yaml"]
+MainRobot: [json_iam, "<PATH TO UR10 YAML>/ur10.yaml"]
 Enabled: [ObjectTrackingToss]
 Plugins: UR_ROS
 Timestep: 0.008
@@ -129,12 +129,12 @@ Timestep: 0.008
 This ensures the communcation with the UR10 is via ROS control and we use the correct timestep of the UR10 (125Hz). 
 Next, open a new terminal. We start the connection with the UR10 via 
 ```bash
-roslaunch ur_robot_driver ur10_bringup.launch robot_ip:=192.168.1.104 kinematics_config:=<path_to_your>/my_robot_calibration.yaml
+roslaunch ur_robot_driver ur10_bringup.launch robot_ip:=192.168.1.104 kinematics_config:=<PATH TO CALIBRATION FILE>/my_robot_calibration.yaml
 ```
 
 In a new terminal, run the following command to start RViZ along with a mc_rtc dedicated panel, and the robot model:
 ```bash
-cd <object_tracking_toss>/scripts
+cd <PATH TO THIS GIT>/scripts
 ./display.sh
 ```
 Finally, in another terminal, run:
