@@ -134,7 +134,7 @@ roslaunch ur_robot_driver ur10_bringup.launch robot_ip:=192.168.1.104 kinematics
 
 In a new terminal, run the following command to start RViZ along with a mc_rtc dedicated panel, and the robot model:
 ```bash
-cd <object_tracking_toss>scripts
+cd <object_tracking_toss>/scripts
 ./display.sh
 ```
 Finally, in another terminal, run:
