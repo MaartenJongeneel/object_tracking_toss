@@ -1,0 +1,268 @@
+---
+# If true, the FSM transitions are managed by an external tool
+Managed: false
+# If true and the FSM is self-managed, transitions should be triggered
+StepByStep: true
+# Change idle behaviour, if true the state is kept until transition,
+# otherwise the FSM holds the last state until transition
+IdleKeepState: false
+# Where to look for state libraries
+StatesLibraries:
+- "@MC_STATES_DEFAULT_RUNTIME_INSTALL_PREFIX@"
+- "@MC_STATES_RUNTIME_INSTALL_PREFIX@"
+# Where to look for state files
+StatesFiles:
+- "@MC_STATES_DEFAULT_RUNTIME_INSTALL_PREFIX@/data"
+- "@MC_STATES_RUNTIME_INSTALL_PREFIX@/data"
+# If true, state factory will be more verbose
+VerboseStateFactory: false
+# Additional robots to load
+robots:
+  vi_testbench:
+    module: env/vi_testbench
+    init_pos:
+      translation: [0,0,0]
+      rotation: [0,0,0]
+  box:
+    module: env/toss_box5
+    constraints:
+    - type: dynamics
+      damper: [0.1, 0.1, 0.1]
+    init_pos:
+       translation: [0.45, -0.9, 0.895]
+       rotation: [0,0,0]
+  conveyor:
+    module: env/conveyor_box
+    constraints:
+    - type: dynamics
+      damper: [0.1, 0.1, 0.1]
+    init_pos:
+      translation: [0.33,-1.9,0.42]
+      rotation: [0,0,-1.57]
+init_pos:
+  translation: [0.0,-0.4,0.909]
+  rotation: [0,0,-1.57]
+    
+# General constraints, always on
+constraints:
+- type: contact
+- type: dynamics
+  damper: [0.1, 0.01, 0.5]
+- type: compoundJoint
+# Collision constraint
+- type: collision
+  robot: ur10_with_gripper
+  robot: ur10_with_gripper
+  useMinimal: true
+
+# Link names:
+# Shoulder link: base_link, shoulder_link
+# Upper arm link: upper_arm_link
+# Forearm link: forearm_link
+# Wrist 1: wrist_1_link
+# Wrist 2: wrist_2_link
+# Wrist 3: wrist_3_link
+# Gripper: suction_cup_link gripper_link flange_link
+
+# Testbench:
+# - type: collision
+#  r1Index: 0
+#  r2Index: 3
+#  collisions: # array of collisions to add for this pair of robots
+#    - body1: suction_cup_link*
+#      body2: vi_testbench
+#      iDist: 0.3  # interaction distance: minimal distance below which the constraint becomes active
+#      sDist: 0.05 # safety distance: minimal allowed distance
+#      damping: 10
+# - type: collision
+#  r1Index: 0
+#  r2Index: 3
+#  collisions: # array of collisions to add for this pair of robots
+#    - body1: gripper_link*
+#      body2: vi_testbench
+#      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+#      sDist: 0.1 # safety distance: minimal allowed distance
+#      damping: 10
+# - type: collision
+#  r1Index: 0
+#  r2Index: 3
+#  collisions: # array of collisions to add for this pair of robots
+#    - body1: flange_link*
+#      body2: vi_testbench
+#      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+#      sDist: 0.1 # safety distance: minimal allowed distance
+#      damping: 10
+# - type: collision
+#  r1Index: 0
+#  r2Index: 3
+#  collisions: # array of collisions to add for this pair of robotsroslaunch mc_rtc_ticker display.launch
+#    - body1: wrist_2_link*
+#      body2: vi_testbench
+#      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+#      sDist: 0.1 # safety distance: minimal allowed distance
+#      damping: 10
+# - type: collision
+#  r1Index: 0
+#  r2Index: 3
+#  collisions: # array of collisions to add for this pair of robots
+#    - body1: forearm_link*
+#      body2: vi_testbench
+#      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+#      sDist: 0.1 # safety distance: minimal allowed distance
+#      damping: 10
+# - type: collision
+#  r1Index: 0
+#  r2Index: 3
+#  collisions: # array of collisions to add for this pair of robots
+#    - body1: upper_arm_link*
+#      body2: vi_testbench
+#      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+#      sDist: 0.05 # safety distance: minimal allowed distance
+#      damping: 10
+
+Conveyor belt:
+- type: collision
+  r1Index: 0
+  r2Index: 2
+  collisions: # array of collisions to add for this pair of robots
+    - body1: suction_cup_link*
+      body2: conveyor_box_body
+      iDist: 0.3  # interaction distance: minimal distance below which the constraint becomes active
+      sDist: 0.05 # safety distance: minimal allowed distance
+      damping: 10
+- type: collision
+  r1Index: 0
+  r2Index: 2
+  collisions: # array of collisions to add for this pair of robots
+    - body1: gripper_link*
+      body2: conveyor_box_body
+      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+      sDist: 0.1 # safety distance: minimal allowed distance
+      damping: 10
+- type: collision
+  r1Index: 0
+  r2Index: 2
+  collisions: # array of collisions to add for this pair of robots
+    - body1: wrist_2_link*
+      body2: conveyor_box_body
+      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+      sDist: 0.1 # safety distance: minimal allowed distance
+      damping: 10
+- type: collision
+  r1Index: 0
+  r2Index: 2
+  collisions: # array of collisions to add for this pair of robots
+    - body1: forearm_link*
+      body2: conveyor_box_body
+      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+      sDist: 0.1 # safety distance: minimal allowed distance
+      damping: 10
+- type: collision
+  r1Index: 0
+  r2Index: 2
+  collisions: # array of collisions to add for this pair of robots
+    - body1: upper_arm_link*
+      body2: conveyor_box_body
+      iDist: 0.2  # interaction distance: minimal distance below which the constraint becomes active
+      sDist: 0.1 # safety distance: minimal allowed distance
+      damping: 10
+
+# Initial set of contacts
+contacts: []
+
+ObserverPipelines:
+- name: MainPipeline
+  gui: true
+  log: true
+  observers:
+    - type: Encoder
+      config:
+        position: encoderValues
+        velocity: encoderVelocities #encoderFiniteDifferences
+        
+states:
+  ReplayBox006Toss:
+    base: BoxToss
+    toss_file_name: /home/administrator/devel/controllers/object_tracking_toss/tossing_recordings/Box006Toss.bin
+
+  ReplayBox007Toss:
+    base: BoxToss
+    toss_file_name: /home/administrator/devel/controllers/object_tracking_toss/tossing_recordings/Box007Toss.bin
+
+  ReplayBox009Toss:
+    base: BoxToss
+    toss_file_name: /home/administrator/devel/controllers/object_tracking_toss/tossing_recordings/Box009Toss.bin
+
+  GrabBox006_:
+    base: GrabBox
+    box_position_hover: [0.585,-0.4,1.1] #[0.585, 0.18, 0.75]
+    box_position_pick: [0.585,-0.4,1.01] #[0.585, 0.18, 0.71]
+    box_position_lift: [0.585,-0.4,1.1] #[0.585, 0.18, 1.1]
+
+  GrabBox007_:
+    base: GrabBox
+    box_position_hover: [0.585,-0.4,1.1]
+    box_position_pick: [0.585,-0.4,1.01]
+    box_position_lift: [0.585,-0.4,1.1]
+
+  GrabBox009_:
+    base: GrabBox
+    box_position_hover: [0.585,-0.4,1.1] #[0.605, 0.19, 0.78]
+    box_position_pick: [0.585,-0.4,1.04] #[0.605, 0.19, 0.74]
+    box_position_lift: [0.585,-0.4,1.1] #[0.605, 0.19, 1.1]
+
+  MoveToNeutral1_:
+    base: MoveToNeutral
+
+  MoveToNeutral2_:
+    base: MoveToNeutral
+
+  MoveToNeutral3_:
+    base: MoveToNeutral
+      
+  MoveToNeutral4_:
+    base: MoveToNeutral
+
+  MoveToStart1_:
+    base: MoveToStart
+
+  MoveToStart2_:
+    base: MoveToStart
+
+  MoveToStart3_:
+    base: MoveToStart
+
+
+# Transitions map
+transitions:
+
+# #Pick and toss Box006
+ - [ObjectTrackingToss_Initial, OK, GrabBox006_, Auto]
+ - [GrabBox006_, OK, MoveToStart, Auto]
+ - [MoveToStart, OK, ReplayBox006Toss, Auto]
+ - [ReplayBox006Toss, OK, MoveToNeutral, Auto]
+ - [MoveToNeutral, OK, TerminateProcess, Auto]
+
+# #Pick and toss Box007
+# - [ObjectTrackingToss_Initial, OK, GrabBox007_, Auto]
+# - [GrabBox007_, OK, MoveToStart, Auto]
+# - [MoveToStart, OK, ReplayBox007Toss, Auto]
+# - [ReplayBox007Toss, OK, MoveToNeutral, Auto]
+# - [MoveToNeutral, OK, TerminateProcess, Auto]
+
+#Pick and toss Box009
+# - [ObjectTrackingToss_Initial, OK, GrabBox009_, Auto]
+# - [GrabBox009_, OK, MoveToStart, Auto]
+# - [MoveToStart, OK, ReplayBox009Toss, Auto]
+# - [ReplayBox009Toss, OK, MoveToNeutral, Auto]
+# - [MoveToNeutral, OK, TerminateProcess, Auto]
+
+#Record teleoperation
+#- [ObjectTrackingToss_Initial, OK, MoveToNeutral, Auto]
+#- [MoveToNeutral, OK, GrabBox3_, Auto]
+#- [GrabBox3_, OK, MoveToStart, Auto]
+#- [MoveToStart, OK, RecordRobotTeleoperation, Auto]
+#- [RecordRobotTeleoperation, OK, TerminateProcess, Auto]
+
+# Initial state
+init: ObjectTrackingToss_Initial

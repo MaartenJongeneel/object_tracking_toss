@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="vi_testbench">
+  <link name="base_link" />
+
+  <link name="vi_testbench">
+    <visual>
+      <geometry>
+        <mesh filename="file://@MESHES_DESTINATION@/vi_testbench/vi_testbench.dae" />
+      </geometry>
+      <material name="default">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="2 1.12 0.9"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="vi_testbench" type="fixed">
+    <parent link="base_link" />
+    <child link="vi_testbench" />
+    <origin rpy="1.570796251296997 0.0 -0.0" xyz="-2.049999952316284 2.5 -1.4199999570846558" />
+  </joint>
+
+
+</robot>

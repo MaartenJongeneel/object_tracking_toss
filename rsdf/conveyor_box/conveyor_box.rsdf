@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<robot name="conveyor_box">
+  <planar_surface name="Bottom" link="conveyor_box_body">
+    <origin rpy="3.14 0.0 0.0" xyz="0.0 0.0 -0.42" />
+    <points>
+      <point xy="-1.025 -0.5" />
+      <point xy="-1.025 0.5" />
+      <point xy="1.025 0.5" />
+      <point xy="1.025 -0.5" />
+    </points>
+    <material name="plastic" />
+  </planar_surface>
+  <planar_surface name="Front" link="conveyor_box_body">
+    <origin rpy="-1.57 0.0 0.0" xyz="0.0 0.5 0.0" />
+    <points>
+      <point xy="-1.025 -0.42" />
+      <point xy="-1.025 0.42" />
+      <point xy="1.025 0.42" />
+      <point xy="1.025 -0.42" />
+	</points>
+    <material name="plastic" />
+  </planar_surface>
+  <planar_surface name="Back" link="conveyor_box_body">
+    <origin rpy="1.57 0.0 0.0" xyz="0.0 -0.5 0.0" />
+    <points>
+      <point xy="-1.025 -0.42" />
+      <point xy="-1.025 0.42" />
+      <point xy="1.025 0.42" />
+      <point xy="1.025 -0.42" />
+    </points>
+    <material name="plastic" />
+  </planar_surface>
+    <planar_surface name="Top" link="conveyor_box_body">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.42" />
+    <points>
+      <point xy="-1.025 -0.5" />
+      <point xy="-1.025 0.5" />
+      <point xy="1.025 0.5" />
+      <point xy="1.025 -0.5" />
+    </points>
+    <material name="plastic" />
+  </planar_surface>
+  <planar_surface name="Left" link="conveyor_box_body">
+    <origin rpy="0.0 -1.57 0.0" xyz="-1.025 0.0 0.0" />
+    <points>
+      <point xy="-0.42 -0.5" />
+      <point xy="-0.42 0.5" />
+      <point xy="0.42 0.5" />
+      <point xy="0.42 -0.5" />
+    </points>
+    <material name="plastic" />
+  </planar_surface>
+  <planar_surface name="Right" link="conveyor_box_body">
+    <origin rpy="0.0 1.57 0.0" xyz="1.025 0.0 0.0" />
+    <points>
+      <point xy="-0.42 -0.5" />
+      <point xy="-0.42 0.5" />
+      <point xy="0.42 0.5" />
+      <point xy="0.42 -0.5" />
+    </points>
+    <material name="plastic" />
+  </planar_surface>
+</robot>

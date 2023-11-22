@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="conveyor_box">
+
+  <link name="base_link" />
+
+  <link name="conveyor_box_body">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="2.55 1.0 0.84"/>
+      </geometry>
+      <material name="default">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="2.55 1.0 0.84"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="conveyor_box" type="fixed">
+    <parent link="base_link" />
+    <child link="conveyor_box_body" />
+    <origin rpy="0.0 0.0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+</robot>
